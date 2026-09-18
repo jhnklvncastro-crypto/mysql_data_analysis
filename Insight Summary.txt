@@ -1,0 +1,24 @@
+Data Overview
+
+The dataset is the Brazilian E-Commerce Public Dataset by Olist, containing information about customers, orders, payments, products, and product categories. The analysis uses the main tables including customers, orders, order_payments, order_items, products, and product_category_name_translation, with customer, order, payment, and product relationships established through their respective IDs. The order data covers approximately September 2016 through September 2018, providing a two-year view of e-commerce activity. Data quality is generally suitable for analysis, although some orders have non-delivered statuses, some product categories may have missing translations, and customer-level analysis should use customer_unique_id to correctly identify repeat customers.
+
+Business Insight 1 – Revenue is concentrated among a small number of product categories
+
+The category revenue analysis in Q4 shows that a relatively small number of product categories generate a significant portion of overall sales, with the top-performing category contributing the largest share of revenue. Q8 further measures this concentration by calculating the top category's percentage of total revenue using SUM() OVER (). This means the business should pay particular attention to its leading categories because changes in demand, pricing, inventory availability, or customer interest in these categories can have a noticeable impact on overall revenue.
+
+Business Insight 2 – Customer spending is concentrated among high-value customers
+
+The Q1 customer spending analysis identifies the top 10 customers based on total payment value, while Q6 segments customers into Low, Medium, and High spending tiers. The results demonstrate that customer value is not evenly distributed, with a smaller group of high-value customers contributing substantially more revenue than lower-spending customers. This indicates that customer retention and targeted offers for high-value customers could be important for protecting and increasing overall revenue.
+
+Business Insight 3 – Repeat customers represent an important opportunity for revenue growth
+
+The Q7 repeat-buyer analysis separates customers into Repeat Buyers and One-Time Buyers based on the number of orders associated with each customer_unique_id. The presence of both customer groups indicates that the business has an opportunity to increase customer lifetime value by converting one-time buyers into repeat customers. In addition, the Q2 monthly revenue trend and Q3 month-over-month analysis can be used to identify periods of stronger or weaker sales performance and determine when customer engagement campaigns may have the greatest impact.
+
+
+Recommendation 1 – Focus inventory and marketing on high-performing categories
+
+The business should prioritize inventory availability, promotions, and marketing investment for the categories identified as the highest revenue contributors in Q4 and Q8. Because the top category represents a measurable percentage of total revenue, maintaining strong product availability and optimizing promotions in this category can help protect the company's overall sales performance.
+
+Recommendation 2 – Build a customer retention program
+
+The business should develop targeted retention campaigns for one-time buyers while providing personalized promotions or loyalty incentives to high-value and repeat customers identified in Q1, Q6, and Q7. Encouraging a second purchase can increase customer lifetime value and reduce reliance on continuously acquiring new customers.
