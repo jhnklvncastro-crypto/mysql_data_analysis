@@ -1,0 +1,45 @@
+WITH monthly_revenue AS (
+    SELECT
+        DATE_FORMAT(
+            o.order_purchase_timestamp,
+            '%Y-%m'
+        ) AS revenue_month,
+        SUM(p.payment_value) AS total_revenue
+    FROM orders AS o
+    JOIN order_payments AS p
+        ON o.order_id = p.order_id
+    GROUP BY
+        DATE_FORMAT(
+            o.order_purchase_timestamp,
+            '%Y-%m'
+        )
+),
+
+revenue_comparison AS (
+    SELECT
+        revenue_month,
+        total_revenue,
+        LAG(total_revenue) OVER (
+            ORDER BY revenue_month
+        ) AS previous_month_revenue
+    FROM monthly_revenue
+)
+
+SELECT
+    revenue_month,
+    ROUND(total_revenue, 2) AS total_revenue,
+    ROUND(previous_month_revenue, 2)
+        AS previous_month_revenue,
+    ROUND(
+        total_revenue - previous_month_revenue,
+        2
+    ) AS mom_change,
+    ROUND(
+        (
+            (total_revenue - previous_month_revenue)
+             NULLIF(previous_month_revenue, 0)
+        )  100,
+        2
+    ) AS mom_change_percentage
+FROM revenue_comparison
+ORDER BY revenue_month;
